@@ -1,0 +1,50 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(fonts/Montserrat-VariableFont.ttf);
+}
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url(fonts/SpaceGrotesk-VariableFont.ttf);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Montserrat";
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "SpaceGrotesk";
+  font-size: 3rem;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+a:visited {
+  all: unset;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+li {
+  float: left;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
