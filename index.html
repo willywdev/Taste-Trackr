@@ -15,7 +15,7 @@
         <ul>
           <li>
             <span class="material-symbols-outlined"> person </span>
-            <a href="">Register</a>
+            <a data-js="registerElement">Register</a>
           </li>
           <li>
             <span class="material-symbols-outlined"> login </span>
@@ -25,7 +25,20 @@
       </nav>
     </header>
     <main>
-      <section data-js="content"></section>
+      <section class="register-form">
+        <form>
+          <label for="">Email:</label>
+          <input type="email" />
+
+          <label for="">Password:</label>
+          <input type="password" />
+
+          <label for="">Repeat Password:</label>
+          <input type="password" name="" id="" />
+
+          <button type="submit">Register</button>
+        </form>
+      </section>
     </main>
   </body>
 </html>

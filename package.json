@@ -12,6 +12,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "firebase": "^10.1.0",
     "material-symbols": "^0.10.4"
   }
 }
