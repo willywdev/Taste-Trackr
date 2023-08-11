@@ -33,6 +33,11 @@ loginElement.addEventListener("click", () =>
   renderForm(loginForm, loginElement)
 );
 
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  handleFormSubmit(event);
+});
+
 function renderForm(formElement, textElement) {
   registerForm.classList.add("hide");
   loginForm.classList.add("hide");
@@ -48,4 +53,10 @@ function renderForm(formElement, textElement) {
       formElement.classList.add("hide");
     }, 401);
   }
+}
+
+function handleFormSubmit(event) {
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
+  console.log(data);
 }
