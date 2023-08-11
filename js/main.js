@@ -25,6 +25,7 @@ const fadeIn = [{ opacity: 0 }, { opacity: 1 }];
 const fadeOut = [{ opacity: 1 }, { opacity: 0 }];
 const fadeTiming = { duration: 400, iterations: 1 };
 
+console.clear();
 // Adding Event Listeners
 registerElement.addEventListener("click", () =>
   renderForm(registerForm, registerElement)
@@ -34,6 +35,11 @@ loginElement.addEventListener("click", () =>
 );
 
 registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  handleFormSubmit(event);
+});
+
+loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   handleFormSubmit(event);
 });
