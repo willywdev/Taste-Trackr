@@ -15,17 +15,17 @@
         <ul>
           <li>
             <span class="material-symbols-outlined"> person </span>
-            <a class="selected">Register</a>
+            <a data-js="registerElement">Register</a>
           </li>
           <li>
             <span class="material-symbols-outlined"> login </span>
-            <a>Login</a>
+            <a data-js="loginElement">Login</a>
           </li>
         </ul>
       </nav>
     </header>
     <main>
-      <section class="form-section register" data-js="registerForm">
+      <section class="form-section hide" data-js="registerForm">
         <form>
           <label for="">Email:</label>
           <input type="email" />
@@ -39,7 +39,7 @@
           <button type="submit">Register</button>
         </form>
       </section>
-      <section class="form-section login" data-js="loginForm">
+      <section class="form-section hide" data-js="loginForm">
         <form>
           <label for="">Email:</label>
           <input type="email" />
@@ -50,6 +50,7 @@
           <button type="submit">Login</button>
         </form>
       </section>
+      <section class="content"></section>
     </main>
   </body>
 </html>

@@ -98,9 +98,6 @@ button {
   height: 300px;
   border-radius: 10px;
 }
-.login {
-  display: none;
-}
-.register {
+.hide {
   display: none;
 }
