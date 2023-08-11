@@ -13,7 +13,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Getting DOM Elements
 export const contentBox = document.querySelector('[data-js="content"]');
 const registerElement = document.querySelector('[data-js="registerElement"]');
 
+// Adding Event Listeners
 registerElement.addEventListener("click", () => {});
