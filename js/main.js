@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { registerForm } from "./createForms";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
@@ -17,6 +16,4 @@ const app = initializeApp(firebaseConfig);
 export const contentBox = document.querySelector('[data-js="content"]');
 const registerElement = document.querySelector('[data-js="registerElement"]');
 
-registerElement.addEventListener("click", () => {
-  registerForm();
-});
+registerElement.addEventListener("click", () => {});

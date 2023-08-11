@@ -15,17 +15,17 @@
         <ul>
           <li>
             <span class="material-symbols-outlined"> person </span>
-            <a data-js="registerElement">Register</a>
+            <a class="selected">Register</a>
           </li>
           <li>
             <span class="material-symbols-outlined"> login </span>
-            <a href="">Login</a>
+            <a>Login</a>
           </li>
         </ul>
       </nav>
     </header>
     <main>
-      <section class="register-form">
+      <section class="form-section register" data-js="registerForm">
         <form>
           <label for="">Email:</label>
           <input type="email" />
@@ -37,6 +37,17 @@
           <input type="password" name="" id="" />
 
           <button type="submit">Register</button>
+        </form>
+      </section>
+      <section class="form-section login" data-js="loginForm">
+        <form>
+          <label for="">Email:</label>
+          <input type="email" />
+
+          <label for="">Password:</label>
+          <input type="password" />
+
+          <button type="submit">Login</button>
         </form>
       </section>
     </main>
