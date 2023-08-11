@@ -34,6 +34,10 @@ loginElement.addEventListener("click", () =>
 );
 
 function renderForm(formElement, textElement) {
+  registerForm.classList.add("hide");
+  loginForm.classList.add("hide");
+  loginElement.classList.remove("selected");
+  registerElement.classList.remove("selected");
   textElement.classList.toggle("selected");
   if (formElement.classList.contains("hide")) {
     formElement.animate(fadeIn, fadeTiming);
