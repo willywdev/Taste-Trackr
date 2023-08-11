@@ -101,3 +101,26 @@ button {
 .hide {
   display: none;
 }
+.user {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  color: var(--accent-color);
+}
+.error {
+  display: none;
+  justify-content: center;
+  background-color: red;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+.success {
+  display: none;
+  justify-content: center;
+  background-color: lightgreen;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 15px;
+  color: black;
+}

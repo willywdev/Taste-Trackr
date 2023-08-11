@@ -14,15 +14,20 @@
       <nav>
         <ul>
           <li>
-            <span class="material-symbols-outlined"> person </span>
+            <span class="material-symbols-outlined" data-js="registerIcon">
+              person
+            </span>
             <a data-js="registerElement">Register</a>
           </li>
           <li>
             <span class="material-symbols-outlined"> login </span>
             <a data-js="loginElement">Login</a>
+            <a class="hide" data-js="logoutElement">Logout</a>
           </li>
         </ul>
       </nav>
+      <span class="user" data-js="userElement"></span>
+      <span class="error" data-js="errorElement"></span>
     </header>
     <main>
       <section class="form-section hide" data-js="registerForm">

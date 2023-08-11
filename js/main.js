@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { loginUser, registerUser } from "./user";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
@@ -11,11 +12,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Getting DOM Elements
-const registerElement = document.querySelector('[data-js="registerElement"]');
-const loginElement = document.querySelector('[data-js="loginElement"]');
+export const registerElement = document.querySelector(
+  '[data-js="registerElement"]'
+);
+export const loginElement = document.querySelector('[data-js="loginElement"]');
 
 const registerForm = document.querySelector('[data-js="registerForm"]');
 const loginForm = document.querySelector('[data-js="loginForm"]');
@@ -36,19 +39,16 @@ loginElement.addEventListener("click", () =>
 
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  handleFormSubmit(event);
+  handleRegister(event);
 });
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  handleFormSubmit(event);
+  handleLogin(event);
 });
 
 function renderForm(formElement, textElement) {
-  registerForm.classList.add("hide");
-  loginForm.classList.add("hide");
-  loginElement.classList.remove("selected");
-  registerElement.classList.remove("selected");
+  hideForm();
   textElement.classList.toggle("selected");
   if (formElement.classList.contains("hide")) {
     formElement.animate(fadeIn, fadeTiming);
@@ -61,8 +61,20 @@ function renderForm(formElement, textElement) {
   }
 }
 
-function handleFormSubmit(event) {
+export function hideForm() {
+  registerForm.classList.add("hide");
+  loginForm.classList.add("hide");
+  loginElement.classList.remove("selected");
+  registerElement.classList.remove("selected");
+}
+function handleRegister(event) {
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
-  console.log(data);
+  registerUser(data.email, data.password);
+}
+
+function handleLogin(event) {
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
+  loginUser(data.email, data.password);
 }
