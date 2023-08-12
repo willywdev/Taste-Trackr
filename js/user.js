@@ -1,15 +1,19 @@
 import {
   createUserWithEmailAndPassword,
-  getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { app, hideForm, loginElement, registerElement } from "./main.js";
-const auth = getAuth(app);
+import { auth, hideForm, loginElement } from "./main.js";
+
 const errorElement = document.querySelector('[data-js="errorElement"]');
 const userElement = document.querySelector('[data-js="userElement"]');
 const logoutElement = document.querySelector('[data-js="logoutElement"]');
-const registerIcon = document.querySelector('[data-js="registerIcon"]');
+
+const registerListElement = document.querySelector(
+  '[data-js="registerListElement"]'
+);
+console.log(registerListElement);
 export function registerUser(email, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -39,23 +43,9 @@ export function loginUser(email, password) {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      userElement.textContent = user.email;
-      errorElement.className = "success";
-      errorElement.style.display = "flex";
-      errorElement.textContent = "You're logged in.";
-      setTimeout(() => {
-        errorElement.style.display = "none";
-      }, 1000);
-      hideForm();
-      loginElement.classList.add("hide");
-      logoutElement.classList.remove("hide");
-      registerIcon.classList.add("hide");
-      registerElement.classList.add("hide");
-
-      logoutElement.addEventListener("click", () => {
-        logoutUser();
-      });
       // ...
+      handleUserLoggedIn(user);
+      setPersistence(email, password);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -71,4 +61,52 @@ export function logoutUser() {
     .catch((error) => {
       // An error happened.
     });
+}
+
+export function setPersistence() {
+  setPersistence(auth, browserSessionPersistence)
+    .then(() => {
+      // Existing and future Auth states are now persisted in the current
+      // session only. Closing the window would clear any existing state even
+      // if a user forgets to sign out.
+      // ...
+      // New sign-in will be persisted with session persistence.
+      return signInWithEmailAndPassword(auth, email, password);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+}
+
+export function handleUserLoggedIn(user) {
+  userElement.textContent = user.email;
+  errorElement.className = "success";
+  errorElement.style.display = "flex";
+  errorElement.textContent = "You're logged in.";
+  setTimeout(() => {
+    errorElement.style.display = "none";
+  }, 1000);
+  hideForm();
+  loginElement.classList.add("hide");
+  logoutElement.classList.remove("hide");
+  registerListElement.classList.add("hide");
+
+  logoutElement.addEventListener("click", () => {
+    logoutUser();
+  });
+}
+
+export function checkUserLoggedIn() {
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      //do your logged in user crap here
+      console.log("Logged in ");
+      return true;
+    } else {
+      console.log("Logged out");
+      return false;
+    }
+  });
 }

@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { loginUser, registerUser } from "./user";
+import { getAuth } from "firebase/auth";
+import { checkUserLoggedIn, loginUser, registerUser } from "./user.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
@@ -11,8 +12,8 @@ const firebaseConfig = {
   appId: "1:736616958411:web:61bd0fe536cd97eb1e0e4e",
 };
 
-// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
 // Getting DOM Elements
 export const registerElement = document.querySelector(
@@ -28,7 +29,9 @@ const fadeIn = [{ opacity: 0 }, { opacity: 1 }];
 const fadeOut = [{ opacity: 1 }, { opacity: 0 }];
 const fadeTiming = { duration: 400, iterations: 1 };
 
-console.clear();
+// Calling functions on DOM Loaded
+checkUserLoggedIn();
+
 // Adding Event Listeners
 registerElement.addEventListener("click", () =>
   renderForm(registerForm, registerElement)
@@ -45,6 +48,7 @@ registerForm.addEventListener("submit", (event) => {
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   handleLogin(event);
+  checkUserLoggedIn();
 });
 
 function renderForm(formElement, textElement) {
