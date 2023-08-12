@@ -26,7 +26,6 @@ export const loginElement = document.querySelector('[data-js="loginElement"]');
 const contentBox = document.querySelector('[data-js="content"]');
 const registerForm = document.querySelector('[data-js="registerForm"]');
 const loginForm = document.querySelector('[data-js="loginForm"]');
-
 // Saving animation in variable
 const fadeIn = [{ opacity: 0 }, { opacity: 1 }];
 const fadeOut = [{ opacity: 1 }, { opacity: 0 }];
@@ -35,7 +34,6 @@ const fadeTiming = { duration: 400, iterations: 1 };
 // Calling functions on DOM Loaded
 async function fetchAndDisplayData(user) {
   await retrieveDatabase();
-  console.log(ratings);
   createList(user.uid);
 }
 
