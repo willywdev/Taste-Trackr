@@ -31,7 +31,7 @@
     </header>
     <main>
       <section class="form-section hide" data-js="registerForm">
-        <form>
+        <form id="register">
           <label for="email">Email:</label>
           <input type="email" name="email" id="email" />
 
@@ -41,18 +41,18 @@
           <label for="passwordRepeat">Repeat Password:</label>
           <input type="password" name="passwordRepeat" id="passwordRepeat" />
 
-          <button type="submit">Register</button>
+          <button type="submit" form="register">Register</button>
         </form>
       </section>
       <section class="form-section hide" data-js="loginForm">
-        <form>
+        <form id="login">
           <label for="email">Email:</label>
           <input type="email" name="email" id="email" />
 
           <label for="password">Password:</label>
           <input type="password" name="password" id="password" />
 
-          <button type="submit">Login</button>
+          <button type="submit" form="login">Login</button>
         </form>
       </section>
       <section class="content"></section>
