@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { collection, getFirestore } from "firebase/firestore";
 import { handleUserLoggedIn, loginUser, registerUser } from "./user.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
   authDomain: "taste-trackr-d6c61.firebaseapp.com",
@@ -14,7 +14,10 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const userCollection = collection(db, "users");
 
+let userLoggedIn = false;
 // Getting DOM Elements
 export const registerElement = document.querySelector(
   '[data-js="registerElement"]'
@@ -35,8 +38,13 @@ onAuthStateChanged(auth, async (user) => {
     //do your logged in user crap here
     console.log("Logged in ");
     handleUserLoggedIn(user);
+    userLoggedIn = true;
+    if (userLoggedIn) {
+      console.log(user.uid);
+    }
   } else {
     console.log("Logged out");
+    userLoggedIn = false;
   }
 });
 // Adding Event Listeners
