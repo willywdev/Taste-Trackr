@@ -159,12 +159,21 @@ button:active {
   top: 10px;
   border-radius: 50%;
 }
-.create {
+.buttons {
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  gap: 1rem;
+}
+.buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin: 0;
+}
+.buttons span {
   display: flex;
   justify-content: center;
-  margin-top: 5px;
   align-items: center;
-}
-.create span {
-  vertical-align: middle;
 }
