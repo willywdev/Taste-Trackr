@@ -121,5 +121,12 @@ async function createList(uid) {
     name.textContent = item.Name;
     contentBox.append(listItem);
     listItem.append(name);
+    const color = document.createElement("div");
+    color.classList.add("color-div");
+    color.style.backgroundColor = item.Farbe;
+    listItem.append(color);
+    const description = document.createElement("p");
+    description.textContent = item.Bewertung;
+    listItem.append(description);
   });
 }
