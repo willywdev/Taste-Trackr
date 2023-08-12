@@ -104,9 +104,7 @@ button:active {
   height: 300px;
   border-radius: 10px;
 }
-.hide {
-  display: none;
-}
+
 .user {
   display: flex;
   justify-content: center;
@@ -182,4 +180,7 @@ button:active {
 }
 select {
   margin-bottom: 10px;
+}
+.hide {
+  display: none;
 }
