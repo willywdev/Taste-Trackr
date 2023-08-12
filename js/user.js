@@ -13,7 +13,7 @@ const logoutElement = document.querySelector('[data-js="logoutElement"]');
 const registerListElement = document.querySelector(
   '[data-js="registerListElement"]'
 );
-console.log(registerListElement);
+
 export function registerUser(email, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -103,10 +103,8 @@ export function checkUserLoggedIn() {
     if (user) {
       //do your logged in user crap here
       console.log("Logged in ");
-      return true;
     } else {
       console.log("Logged out");
-      return false;
     }
   });
 }

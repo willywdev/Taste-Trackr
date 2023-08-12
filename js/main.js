@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { checkUserLoggedIn, loginUser, registerUser } from "./user.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { handleUserLoggedIn, loginUser, registerUser } from "./user.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
@@ -30,8 +30,15 @@ const fadeOut = [{ opacity: 1 }, { opacity: 0 }];
 const fadeTiming = { duration: 400, iterations: 1 };
 
 // Calling functions on DOM Loaded
-checkUserLoggedIn();
-
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    //do your logged in user crap here
+    console.log("Logged in ");
+    handleUserLoggedIn(user);
+  } else {
+    console.log("Logged out");
+  }
+});
 // Adding Event Listeners
 registerElement.addEventListener("click", () =>
   renderForm(registerForm, registerElement)
@@ -48,7 +55,6 @@ registerForm.addEventListener("submit", (event) => {
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   handleLogin(event);
-  checkUserLoggedIn();
 });
 
 function renderForm(formElement, textElement) {
