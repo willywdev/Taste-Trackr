@@ -9,7 +9,6 @@ import { auth, hideForm, loginElement } from "./main.js";
 const errorElement = document.querySelector('[data-js="errorElement"]');
 const userElement = document.querySelector('[data-js="userElement"]');
 const logoutElement = document.querySelector('[data-js="logoutElement"]');
-const createButton = document.querySelector('[data-js="createButton"]');
 
 const registerListElement = document.querySelector(
   '[data-js="registerListElement"]'
@@ -96,7 +95,6 @@ export function handleUserLoggedIn(user) {
   logoutElement.addEventListener("click", () => {
     logoutUser();
   });
-  createButton.classList.remove("hide");
 }
 
 export function checkUserLoggedIn() {

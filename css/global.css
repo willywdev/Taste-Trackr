@@ -133,6 +133,8 @@ button:active {
   color: black;
   width: 200px;
   margin: 0 auto;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 .content {
   display: flex;
@@ -164,6 +166,7 @@ button:active {
   margin: 0;
   justify-content: center;
   gap: 1rem;
+  margin-top: 0.5rem;
 }
 .buttons button {
   display: flex;

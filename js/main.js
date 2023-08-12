@@ -11,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: "736616958411",
   appId: "1:736616958411:web:61bd0fe536cd97eb1e0e4e",
 };
-
+// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore();
@@ -23,9 +23,11 @@ export const registerElement = document.querySelector(
   '[data-js="registerElement"]'
 );
 export const loginElement = document.querySelector('[data-js="loginElement"]');
-const contentBox = document.querySelector('[data-js="content"]');
+export const contentBox = document.querySelector('[data-js="content"]');
 const registerForm = document.querySelector('[data-js="registerForm"]');
 const loginForm = document.querySelector('[data-js="loginForm"]');
+const connectButton = document.querySelector('[data-js="connectButton"]');
+
 // Saving animation in variable
 const fadeIn = [{ opacity: 0 }, { opacity: 1 }];
 const fadeOut = [{ opacity: 1 }, { opacity: 0 }];
@@ -45,7 +47,50 @@ onAuthStateChanged(auth, async (user) => {
   } else {
   }
 });
+
 // Adding Event Listeners
+connectButton.addEventListener("click", () => {
+  contentBox.innerHTML = "";
+  const newForm = document.createElement("form");
+  const label = document.createElement("label");
+  label.textContent = "Your User ID:";
+  const input = document.createElement("input");
+  const uid = getUserUID();
+  input.value = uid;
+  const copyButton = document.createElement("button");
+  copyButton.textContent = "Copy";
+  newForm.append(label, input, copyButton);
+  contentBox.append(newForm);
+  copyButton.addEventListener("click", () => {
+    // Select the text field
+    input.select();
+    input.setSelectionRange(0, 99999); // For mobile devices
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(input.value);
+  });
+
+  newForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+
+  const partnerForm = document.createElement("form");
+  const partnerLabel = document.createElement("label");
+  partnerLabel.textContent = "Set your partners ID:";
+  const partnerInput = document.createElement("input");
+  const partnerButton = document.createElement("button");
+  partnerButton.textContent = "Save";
+  partnerForm.append(partnerLabel, partnerInput, partnerButton);
+  contentBox.append(partnerForm);
+
+  partnerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+
+  partnerButton.addEventListener("click", () => {
+    connectPeople(partnerInput.value);
+  });
+});
+
 registerElement.addEventListener("click", () =>
   renderForm(registerForm, registerElement)
 );
@@ -127,4 +172,19 @@ async function createList(uid) {
     description.textContent = item.Bewertung;
     listItem.append(description);
   });
+}
+
+function getUserUID() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user !== null) {
+    const uid = user.uid;
+    return uid;
+  }
+}
+
+function connectPeople(partnerID) {
+  const userID = getUserUID();
+  console.log(userID);
+  console.log(partnerID);
 }
