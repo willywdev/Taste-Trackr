@@ -26,7 +26,10 @@ export const loginElement = document.querySelector('[data-js="loginElement"]');
 export const contentBox = document.querySelector('[data-js="content"]');
 const registerForm = document.querySelector('[data-js="registerForm"]');
 const loginForm = document.querySelector('[data-js="loginForm"]');
-const connectButton = document.querySelector('[data-js="connectButton"]');
+export const connectButton = document.querySelector(
+  '[data-js="connectButton"]'
+);
+export const createButton = document.querySelector('[data-js="createButton"]');
 
 // Saving animation in variable
 const fadeIn = [{ opacity: 0 }, { opacity: 1 }];
@@ -49,6 +52,44 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // Adding Event Listeners
+createButton.addEventListener("click", () => {
+  contentBox.innerHTML = "";
+  const newForm = document.createElement("form");
+  const nameLabel = document.createElement("label");
+  nameLabel.textContent = "Name:";
+  const nameInput = document.createElement("input");
+  const colorLabel = document.createElement("label");
+  colorLabel.textContent = "Pick a color:";
+  const colorSelect = document.createElement("select");
+  const colorOption1 = document.createElement("option");
+  colorOption1.textContent = "Green";
+  const colorOption2 = document.createElement("option");
+  colorOption2.textContent = "Yellow";
+  const colorOption3 = document.createElement("option");
+  colorOption3.textContent = "Red";
+  colorSelect.append(colorOption1, colorOption2, colorOption3);
+  const descriptionLabel = document.createElement("label");
+  descriptionLabel.textContent = "Your Rating:";
+  const descriptionInput = document.createElement("textarea");
+  const submitButton = document.createElement("button");
+  submitButton.textContent = "Save";
+
+  newForm.append(
+    nameLabel,
+    nameInput,
+    colorLabel,
+    colorSelect,
+    descriptionLabel,
+    descriptionInput,
+    submitButton
+  );
+  contentBox.append(newForm);
+
+  newForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+});
+
 connectButton.addEventListener("click", () => {
   contentBox.innerHTML = "";
   const newForm = document.createElement("form");

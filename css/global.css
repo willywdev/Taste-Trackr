@@ -180,3 +180,6 @@ button:active {
   justify-content: center;
   align-items: center;
 }
+select {
+  margin-bottom: 10px;
+}
