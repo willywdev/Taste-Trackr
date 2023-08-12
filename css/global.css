@@ -114,6 +114,8 @@ button {
   padding: 10px;
   font-weight: bold;
   border-radius: 15px;
+  width: 200px;
+  margin: 0 auto;
 }
 .success {
   display: none;
@@ -123,4 +125,6 @@ button {
   font-weight: bold;
   border-radius: 15px;
   color: black;
+  width: 200px;
+  margin: 0 auto;
 }

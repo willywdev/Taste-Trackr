@@ -4,8 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc } from "firebase/firestore";
-import { auth, hideForm, loginElement, userCollection } from "./main.js";
+import { auth, hideForm, loginElement } from "./main.js";
 
 const errorElement = document.querySelector('[data-js="errorElement"]');
 const userElement = document.querySelector('[data-js="userElement"]');
@@ -14,36 +13,7 @@ const logoutElement = document.querySelector('[data-js="logoutElement"]');
 const registerListElement = document.querySelector(
   '[data-js="registerListElement"]'
 );
-console.log(doc);
 export async function registerUser(email, password) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    // Benutzerdaten
-    const user = userCredential.user;
-    const userData = {
-      email: user.email,
-      // Weitere Benutzerdaten hier hinzufügen, falls benötigt
-    };
-
-    // Neuen Dokumentpfad für den Benutzer erstellen
-    const userDocRef = userCollection.doc(user.uid);
-
-    // Benutzerdaten im Firestore-Dokument speichern
-    await userDocRef.set(userData);
-
-    // Restliche Logik
-    handleUserLoggedIn(user);
-  } catch (error) {
-    // Fehlerbehandlung
-    console.error(error);
-  }
-}
-/* export async function registerUser(email, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -65,7 +35,7 @@ export async function registerUser(email, password) {
       }
       // ..
     });
-} */
+}
 
 export function loginUser(email, password) {
   signInWithEmailAndPassword(auth, email, password)

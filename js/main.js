@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, getFirestore } from "firebase/firestore";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { handleUserLoggedIn, loginUser, registerUser } from "./user.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
@@ -14,16 +14,16 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const userCollection = collection(db, "users");
+const db = getFirestore();
+const colRef = collection(db, "ratings");
+let ratings = [];
 
-let userLoggedIn = false;
 // Getting DOM Elements
 export const registerElement = document.querySelector(
   '[data-js="registerElement"]'
 );
 export const loginElement = document.querySelector('[data-js="loginElement"]');
-
+const contentBox = document.querySelector('[data-js="content"]');
 const registerForm = document.querySelector('[data-js="registerForm"]');
 const loginForm = document.querySelector('[data-js="loginForm"]');
 
@@ -33,18 +33,18 @@ const fadeOut = [{ opacity: 1 }, { opacity: 0 }];
 const fadeTiming = { duration: 400, iterations: 1 };
 
 // Calling functions on DOM Loaded
+async function fetchAndDisplayData(user) {
+  await retrieveDatabase();
+  console.log(ratings);
+  createList(user.uid);
+}
+
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     //do your logged in user crap here
-    console.log("Logged in ");
     handleUserLoggedIn(user);
-    userLoggedIn = true;
-    if (userLoggedIn) {
-      console.log(user.uid);
-    }
+    await fetchAndDisplayData(user);
   } else {
-    console.log("Logged out");
-    userLoggedIn = false;
   }
 });
 // Adding Event Listeners
@@ -95,4 +95,31 @@ function handleLogin(event) {
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
   loginUser(data.email, data.password);
+}
+
+async function retrieveDatabase() {
+  try {
+    const snapshot = await getDocs(colRef);
+    const uniqueRatings = new Set();
+    snapshot.docs.forEach((doc) => {
+      uniqueRatings.add({ ...doc.data(), id: doc.id });
+    });
+
+    ratings = [...uniqueRatings];
+  } catch (error) {
+    console.error("Error retrieving database:", error);
+  }
+}
+
+async function createList(uid) {
+  let filteredList = ratings.filter((rating) => {
+    return rating.CreatedByUserID === uid;
+  });
+  filteredList.forEach((item) => {
+    const listItem = document.createElement("li");
+    const name = document.createElement("h2");
+    name.textContent = item.Name;
+    contentBox.append(listItem);
+    listItem.append(name);
+  });
 }
