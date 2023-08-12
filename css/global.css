@@ -155,7 +155,7 @@ button:active {
   width: 35px;
   height: 35px;
   position: absolute;
-  right: 10px;
+  left: 10px;
   top: 10px;
   border-radius: 50%;
 }
@@ -183,4 +183,24 @@ select {
 }
 .hide {
   display: none;
+}
+.delete-button {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.delete-button:hover {
+  opacity: 1;
+}
+
+.delete-button:active {
+  opacity: 1;
 }

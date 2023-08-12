@@ -1,7 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 import { handleUserLoggedIn, loginUser, registerUser } from "./user.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDOqXT90KaOECDCxOx-AZagJHG6NsWFIsY",
@@ -26,9 +33,7 @@ export const loginElement = document.querySelector('[data-js="loginElement"]');
 export const contentBox = document.querySelector('[data-js="content"]');
 const registerForm = document.querySelector('[data-js="registerForm"]');
 const loginForm = document.querySelector('[data-js="loginForm"]');
-export const connectButton = document.querySelector(
-  '[data-js="connectButton"]'
-);
+
 export const createButton = document.querySelector('[data-js="createButton"]');
 
 // Saving animation in variable
@@ -58,9 +63,11 @@ createButton.addEventListener("click", () => {
   const nameLabel = document.createElement("label");
   nameLabel.textContent = "Name:";
   const nameInput = document.createElement("input");
+  nameInput.required = true;
   const colorLabel = document.createElement("label");
   colorLabel.textContent = "Pick a color:";
   const colorSelect = document.createElement("select");
+  colorSelect.required = true;
   const colorOption1 = document.createElement("option");
   colorOption1.textContent = "Green";
   const colorOption2 = document.createElement("option");
@@ -71,6 +78,7 @@ createButton.addEventListener("click", () => {
   const descriptionLabel = document.createElement("label");
   descriptionLabel.textContent = "Your Rating:";
   const descriptionInput = document.createElement("textarea");
+  descriptionInput.required = true;
   const submitButton = document.createElement("button");
   submitButton.textContent = "Save";
 
@@ -87,48 +95,22 @@ createButton.addEventListener("click", () => {
 
   newForm.addEventListener("submit", (event) => {
     event.preventDefault();
-  });
-});
-
-connectButton.addEventListener("click", () => {
-  contentBox.innerHTML = "";
-  const newForm = document.createElement("form");
-  const label = document.createElement("label");
-  label.textContent = "Your User ID:";
-  const input = document.createElement("input");
-  const uid = getUserUID();
-  input.value = uid;
-  const copyButton = document.createElement("button");
-  copyButton.textContent = "Copy";
-  newForm.append(label, input, copyButton);
-  contentBox.append(newForm);
-  copyButton.addEventListener("click", () => {
-    // Select the text field
-    input.select();
-    input.setSelectionRange(0, 99999); // For mobile devices
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(input.value);
-  });
-
-  newForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
-
-  const partnerForm = document.createElement("form");
-  const partnerLabel = document.createElement("label");
-  partnerLabel.textContent = "Set your partners ID:";
-  const partnerInput = document.createElement("input");
-  const partnerButton = document.createElement("button");
-  partnerButton.textContent = "Save";
-  partnerForm.append(partnerLabel, partnerInput, partnerButton);
-  contentBox.append(partnerForm);
-
-  partnerForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
-
-  partnerButton.addEventListener("click", () => {
-    connectPeople(partnerInput.value);
+    addDoc(colRef, {
+      Bewertung: descriptionInput.value,
+      Farbe:
+        colorSelect.value === "Green"
+          ? "lightgreen"
+          : colorSelect.value === "Yellow"
+          ? "yellow"
+          : "red",
+      Name: nameInput.value,
+      CreatedByUserID: getUserUID(),
+    })
+      .then(() => newForm.reset())
+      .then(() => {
+        submitButton.style.backgroundColor = "lightgreen";
+        submitButton.textContent = "Saved";
+      });
   });
 });
 
@@ -212,6 +194,21 @@ async function createList(uid) {
     const description = document.createElement("p");
     description.textContent = item.Bewertung;
     listItem.append(description);
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerHTML = `<span class="material-symbols-outlined">
+    delete
+    </span>`;
+    listItem.append(deleteButton);
+
+    deleteButton.addEventListener("click", () => {
+      const docRef = doc(db, "ratings", item.id);
+      deleteDoc(docRef)
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => console.log(error));
+    });
   });
 }
 
@@ -222,10 +219,4 @@ function getUserUID() {
     const uid = user.uid;
     return uid;
   }
-}
-
-function connectPeople(partnerID) {
-  const userID = getUserUID();
-  console.log(userID);
-  console.log(partnerID);
 }
