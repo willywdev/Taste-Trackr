@@ -181,19 +181,23 @@ async function createList(uid) {
   let filteredList = ratings.filter((rating) => {
     return rating.CreatedByUserID === uid;
   });
+
   filteredList.forEach((item) => {
     const listItem = document.createElement("li");
     const name = document.createElement("h2");
     name.textContent = item.Name;
     contentBox.append(listItem);
     listItem.append(name);
+
     const color = document.createElement("div");
     color.classList.add("color-div");
     color.style.backgroundColor = item.Farbe;
     listItem.append(color);
+
     const description = document.createElement("p");
     description.textContent = item.Bewertung;
     listItem.append(description);
+
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.innerHTML = `<span class="material-symbols-outlined">
@@ -202,12 +206,45 @@ async function createList(uid) {
     listItem.append(deleteButton);
 
     deleteButton.addEventListener("click", () => {
-      const docRef = doc(db, "ratings", item.id);
-      deleteDoc(docRef)
-        .then(() => {
+      const modal = document.createElement("modal");
+      modal.classList.add("confirm-modal");
+      modal.animate(fadeIn, fadeTiming);
+      document.body.append(modal);
+
+      const modalHeadline = document.createElement("h3");
+      modalHeadline.textContent = "Are you sure about that?";
+      modal.append(modalHeadline);
+
+      const modalButtonsWrapper = document.createElement("div");
+      modalButtonsWrapper.classList.add("modal-buttons-wrapper");
+      const confirmButton = document.createElement("button");
+      confirmButton.innerHTML = `<span class="material-symbols-outlined">
+      delete
+      </span> Delete Rating`;
+      confirmButton.classList.add("confirm-button");
+
+      const cancelButton = document.createElement("button");
+      cancelButton.textContent = "Cancel";
+      cancelButton.classList.add("cancel-button");
+
+      modalButtonsWrapper.append(confirmButton, cancelButton);
+      modal.append(modalButtonsWrapper);
+
+      confirmButton.addEventListener("click", () => {
+        const docRef = doc(db, "ratings", item.id);
+        deleteDoc(docRef)
+          .then(() => {
+            location.reload();
+          })
+          .catch((error) => console.log(error));
+      });
+
+      cancelButton.addEventListener("click", () => {
+        modal.animate(fadeOut, fadeTiming);
+        setTimeout(() => {
           location.reload();
-        })
-        .catch((error) => console.log(error));
+        }, 401);
+      });
     });
   });
 }
