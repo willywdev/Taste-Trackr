@@ -196,9 +196,11 @@ async function createList(uid) {
     listItem.append(color);
 
     const description = document.createElement("p");
-    const newText = item.Bewertung.replace(/\n\r?/g, "<br />");
+    const newText = item.Bewertung.includes("<img")
+      ? ""
+      : item.Bewertung.replace(/\n\r?/g, "<br />");
 
-    description.textContent = newText;
+    description.innerHTML = newText;
     listItem.append(description);
 
     const deleteButton = document.createElement("button");
