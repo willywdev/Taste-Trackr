@@ -47,8 +47,19 @@ export function loginUser(email, password) {
       setPersistence(email, password);
     })
     .catch((error) => {
-      const errorCode = error.code;
       const errorMessage = error.message;
+      errorElement.style.display = "flex";
+      if (errorMessage.includes("missing")) {
+        errorElement.textContent = "Either your e-mail or password is missing";
+      } else if (errorMessage.includes("attempts")) {
+        errorElement.textContent = "Too many attempts. Please try again later";
+      } else if (errorMessage.includes("wrong")) {
+        errorElement.textContent = "Either your e-mail or password is wrong";
+      } else if (errorMessage.includes("internal")) {
+        errorElement.textContent = "Internal Error. Please try again later";
+      } else {
+        errorElement.textContent = "Something went wrong";
+      }
     });
 }
 
