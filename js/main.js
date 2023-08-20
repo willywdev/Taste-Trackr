@@ -99,10 +99,10 @@ createButton.addEventListener("click", () => {
       Bewertung: descriptionInput.value,
       Farbe:
         colorSelect.value === "Green"
-          ? "lightgreen"
+          ? "#32C732"
           : colorSelect.value === "Yellow"
-          ? "yellow"
-          : "red",
+          ? "#FFFACD"
+          : "#FF6961",
       Name: nameInput.value,
       CreatedByUserID: getUserUID(),
     })
@@ -195,7 +195,9 @@ async function createList(uid) {
     listItem.append(color);
 
     const description = document.createElement("p");
-    description.textContent = item.Bewertung;
+    const newText = item.Bewertung.replace(/\n\r?/g, "<br />");
+
+    description.innerHTML = newText;
     listItem.append(description);
 
     const deleteButton = document.createElement("button");

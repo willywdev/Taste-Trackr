@@ -140,16 +140,29 @@ button:active {
   justify-content: center;
   align-items: center;
 }
+.content h2 {
+  justify-self: center;
+  align-self: center;
+  text-decoration: underline 2px white;
+  text-underline-offset: 3px;
+  margin-top: 1rem;
+  margin-bottom: 5px;
+}
+
 .content li {
   background-color: rgba(255, 255, 255, 0.148);
   display: flex;
   flex-direction: column;
-  width: 300px;
-  align-items: center;
+  width: 325px;
+  align-items: flex-start;
   justify-content: center;
-  height: 100px;
+  min-height: 200px;
   border-radius: 15px;
   position: relative;
+  padding: 0 1rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  margin-bottom: 0;
 }
 .color-div {
   width: 35px;
