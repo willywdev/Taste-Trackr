@@ -26,12 +26,13 @@ export async function registerUser(email, password) {
     .catch((error) => {
       // const errorCode = error.code;
       // const errorMessage = error.message;
-      if (error.message.includes("missing-password")) {
-        errorElement.style.display = "flex";
-        errorElement.textContent = "Missing Password!";
-      } else if (error.message.includes("missing-email")) {
-        errorElement.style.display = "flex";
-        errorElement.textContent = "Missing E-Mail!";
+      errorElement.style.display = "flex";
+      if (error.message.includes("missing")) {
+        errorElement.textContent = "Missing Password or Email";
+      } else if (error.message.includes("exists")) {
+        errorElement.textContent = "Your E-mail already exists";
+      } else {
+        errorElement.textContent = "Something went wrong";
       }
       // ..
     });

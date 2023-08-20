@@ -154,6 +154,7 @@ export function hideForm() {
 function handleRegister(event) {
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
+
   registerUser(data.email, data.password);
 }
 
@@ -197,7 +198,7 @@ async function createList(uid) {
     const description = document.createElement("p");
     const newText = item.Bewertung.replace(/\n\r?/g, "<br />");
 
-    description.innerHTML = newText;
+    description.textContent = newText;
     listItem.append(description);
 
     const deleteButton = document.createElement("button");
