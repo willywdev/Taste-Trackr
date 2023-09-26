@@ -17,14 +17,14 @@ export default function AddRestaurantForm() {
     });
 
     event.target.reset();
-    event.target.name.focus();
+    event.target.restaurant.focus();
   }
 
   return (
     <StyledArticle>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" id="name" />
+        <label htmlFor="restaurant">Name:</label>
+        <input type="text" name="restaurant" id="restaurant" />
         <label htmlFor="rating">Rating:</label>
         <select name="rating" id="rating">
           <option value="red">Bad</option>

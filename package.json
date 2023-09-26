@@ -15,5 +15,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
     "styled-components": "^6.0.8"
+  },
+  "resolutions": {
+    "styled-components": "^6"
   }
 }
