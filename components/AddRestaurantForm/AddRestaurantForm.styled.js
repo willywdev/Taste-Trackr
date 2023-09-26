@@ -13,7 +13,7 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledInput = styled.input`
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   height: 1.3rem;
   width: 300px;
@@ -25,7 +25,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledTextarea = styled.textarea`
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   width: 300px;
 

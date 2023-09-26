@@ -7,14 +7,7 @@ import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import styled from "styled-components";
 
-export default function restaurantsPage({
-  isLoading,
-  error,
-  restaurantsData,
-  setTitle,
-}) {
-  setTitle("Taste Trackr - Restaurants");
-
+export default function restaurantsPage({ isLoading, error, restaurantsData }) {
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
