@@ -1,18 +1,23 @@
 {
   "name": "taste-trackr",
-  "private": true,
   "version": "0.1.0",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^4.4.5"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^10.1.0",
-    "material-symbols": "^0.10.4"
+    "mongoose": "^7.5.2",
+    "next": "13.5.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.11.0",
+    "styled-components": "^6.0.8",
+    "swr": "^2.2.4"
+  },
+  "resolutions": {
+    "styled-components": "^6"
   }
 }
