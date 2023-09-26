@@ -34,6 +34,7 @@ export default function App({ Component, pageProps }) {
         handleSearchClicked={handleSearchClicked}
         isSearchClicked={isSearchClicked}
         handleSearchValue={handleSearchValue}
+        isLoggedIn={isLoggedIn}
       />
       <Component
         {...pageProps}

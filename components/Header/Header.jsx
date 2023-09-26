@@ -13,6 +13,7 @@ export default function Header({
   handleSearchClicked,
   isSearchClicked,
   handleSearchValue,
+  isLoggedIn,
 }) {
   function toggleSearchBar(event) {
     event.preventDefault();
@@ -36,8 +37,16 @@ export default function Header({
         <StyledButton onClick={toggleSearchBar}>
           <FiSearch />
         </StyledButton>
-        <StyledLinkButton href="/">Login</StyledLinkButton>
-        <StyledLinkButton href="/">Sign up</StyledLinkButton>
+        {isLoggedIn ? (
+          <StyledLinkButton href="/restaurants">
+            My Restaurants
+          </StyledLinkButton>
+        ) : (
+          <>
+            <StyledLinkButton href="/">Login</StyledLinkButton>
+            <StyledLinkButton href="/">Sign up</StyledLinkButton>
+          </>
+        )}
       </StyledNav>
     </StyledHeader>
   );
