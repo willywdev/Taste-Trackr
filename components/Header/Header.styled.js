@@ -10,6 +10,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 10;
 `;
 export const StyledHeadline = styled.h1`
   padding-left: 2rem;
