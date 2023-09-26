@@ -1,7 +1,7 @@
+import Link from "next/link";
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
-  all: unset;
+const StyledLinkButton = styled(Link)`
   font-size: 1rem;
   color: #52ffbd;
   text-decoration: none;
@@ -11,10 +11,16 @@ export const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 
   &:hover {
     background-color: #52ffbd;
     color: #03071e;
   }
+
+  @media (max-width: 768px) {
+    outline: 1px solid #52ffbd;
+    padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  }
 `;
+
+export default StyledLinkButton;

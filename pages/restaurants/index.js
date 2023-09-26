@@ -3,7 +3,7 @@ import {
   StyledArticleHeadline,
   StyledTextSection,
 } from "@/components/StyledArticle/Article.styled";
-import StyledButton from "@/components/StyledButton/Button.styled";
+import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import styled from "styled-components";
 
