@@ -7,6 +7,15 @@ export default function AddRestaurantForm() {
     const restaurantData = Object.fromEntries(formData);
     // --- delete console.log when in prod
     console.log(restaurantData);
+    // ---
+    const response = await fetch("/api/restaurants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(restaurantData),
+    });
+
     event.target.reset();
     event.target.name.focus();
   }
