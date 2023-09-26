@@ -1,8 +1,8 @@
-import { StyledArticle } from "../StyledArticle/Article.styled";
+import { StyledSection } from "../StyledSection/Section.styled";
 
 export default function Landing() {
   return (
-    <StyledArticle>
+    <StyledSection>
       <h2>Hello World!</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
@@ -10,6 +10,6 @@ export default function Landing() {
         fugiat dolorem ipsam aliquid quae vitae voluptate enim perspiciatis nisi
         soluta?
       </p>
-    </StyledArticle>
+    </StyledSection>
   );
 }

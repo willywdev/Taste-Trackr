@@ -1,13 +1,10 @@
-import { StyledArticle } from "../StyledArticle/Article.styled";
+import { StyledSection } from "../StyledSection/Section.styled";
 
 export default function AddRestaurantForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const restaurantData = Object.fromEntries(formData);
-    // --- delete console.log when in prod
-    console.log(restaurantData);
-    // ---
     const response = await fetch("/api/restaurants", {
       method: "POST",
       headers: {
@@ -21,7 +18,7 @@ export default function AddRestaurantForm() {
   }
 
   return (
-    <StyledArticle>
+    <StyledSection>
       <form onSubmit={handleSubmit}>
         <label htmlFor="restaurant">Name:</label>
         <input type="text" name="restaurant" id="restaurant" />
@@ -37,6 +34,6 @@ export default function AddRestaurantForm() {
         <input type="text" name="city" id="city" />
         <button type="submit">Submit</button>
       </form>
-    </StyledArticle>
+    </StyledSection>
   );
 }

@@ -1,6 +1,6 @@
 import AddRestaurantForm from "@/components/AddRestaurantForm/AddRestaurantForm";
 
-export default function restaurantsPage() {
+export default function createPage() {
   return (
     <main>
       <AddRestaurantForm />

@@ -1,0 +1,26 @@
+[
+  {
+    "restaurant": "Restaurant 1",
+    "rating": "red",
+    "text": "Test 1",
+    "city": "Berlin"
+  },
+  {
+    "restaurant": "Restaurant 2",
+    "rating": "yellow",
+    "text": "Test 2",
+    "city": "Dortmund"
+  },
+  {
+    "restaurant": "Restaurant 3",
+    "rating": "green",
+    "text": "Test 3",
+    "city": "Hamburg"
+  },
+  {
+    "restaurant": "Restaurant 4",
+    "rating": "green",
+    "text": "Test 4",
+    "city": "Düsseldorf"
+  }
+]

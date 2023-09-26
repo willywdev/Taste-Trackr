@@ -1,15 +1,14 @@
 import { FiSearch } from "react-icons/fi";
-import {
-  StyledButton,
-  StyledHeader,
-  StyledHeadline,
-  StyledNav,
-} from "./Header.styled";
+import StyledButton from "../StyledButton/Button.styled";
+import { StyledLink } from "../StyledLink/Link.styled";
+import { StyledHeader, StyledHeadline, StyledNav } from "./Header.styled";
 
 export default function Header() {
   return (
     <StyledHeader>
-      <StyledHeadline>Taste Trackr</StyledHeadline>
+      <StyledHeadline>
+        <StyledLink href="/">Taste Trackr</StyledLink>
+      </StyledHeadline>
       <StyledNav>
         <StyledButton href="/">
           <FiSearch />
