@@ -16,10 +16,20 @@ export const StyledHeadline = styled.h1`
   color: #52ffbd;
   user-select: none;
   font-size: 1.7rem;
+
+  @media (max-width: 768px) {
+    padding-left: 0.7rem;
+    font-size: 1.5rem;
+  }
 `;
 
 export const StyledNav = styled.nav`
   padding-right: 2rem;
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    padding-right: 0.7rem;
+    gap: 0.6rem;
+  }
 `;

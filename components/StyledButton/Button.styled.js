@@ -16,6 +16,11 @@ const StyledButton = styled(Link)`
     background-color: #52ffbd;
     color: #03071e;
   }
+
+  @media (max-width: 768px) {
+    outline: 1px solid #52ffbd;
+    padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  }
 `;
 
 export default StyledButton;

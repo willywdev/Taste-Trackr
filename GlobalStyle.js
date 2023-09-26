@@ -18,6 +18,13 @@ const GlobalStyle = createGlobalStyle`
     main {
         padding-top: 5.25rem;
     }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+    }
 `;
 
 export default GlobalStyle;
