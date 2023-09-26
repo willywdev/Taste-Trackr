@@ -4,14 +4,19 @@ import { StyledLink } from "../StyledLink/Link.styled";
 import StyledLinkButton from "../StyledLinkButton/LinkButton.styled";
 import { StyledHeader, StyledHeadline, StyledNav } from "./Header.styled";
 
-export default function Header({ handleSearchClicked, isSearchClicked }) {
+export default function Header({
+  handleSearchClicked,
+  isSearchClicked,
+  handleSearchValue,
+}) {
   function toggleSearchBar(event) {
     event.preventDefault();
     handleSearchClicked();
   }
 
   function handleSearchInput(event) {
-    console.log(event.target.value);
+    const searchValue = event.target.value.toLowerCase();
+    handleSearchValue(searchValue);
   }
 
   return (

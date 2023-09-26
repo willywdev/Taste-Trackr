@@ -8,6 +8,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [isSearchClicked, setIsSearchClicked] = useState(true);
   const { data, isLoading, error } = useSWR("/api/restaurants", fetcher);
 
@@ -19,6 +20,10 @@ export default function App({ Component, pageProps }) {
     setIsLoggedIn(!isLoggedIn);
   }
 
+  function handleSearchValue(value) {
+    setSearchValue(value);
+  }
+
   return (
     <>
       <Head>
@@ -28,6 +33,7 @@ export default function App({ Component, pageProps }) {
       <Header
         handleSearchClicked={handleSearchClicked}
         isSearchClicked={isSearchClicked}
+        handleSearchValue={handleSearchValue}
       />
       <Component
         {...pageProps}
@@ -35,6 +41,7 @@ export default function App({ Component, pageProps }) {
         restaurantsData={data}
         error={error}
         isLoading={isLoading}
+        searchValue={searchValue}
       />
     </>
   );

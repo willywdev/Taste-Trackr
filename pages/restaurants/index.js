@@ -7,7 +7,14 @@ import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import styled from "styled-components";
 
-export default function restaurantsPage({ isLoading, error, restaurantsData }) {
+export default function restaurantsPage({
+  isLoading,
+  error,
+  restaurantsData,
+  searchValue,
+}) {
+  let filteredRestaurants;
+
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
@@ -18,6 +25,18 @@ export default function restaurantsPage({ isLoading, error, restaurantsData }) {
     if (valueFromDB === "green") {
       return "🟢";
     }
+  }
+
+  if (searchValue) {
+    filteredRestaurants = restaurantsData.filter(
+      (restaurant) =>
+        restaurant.restaurant.toLowerCase().includes(searchValue) ||
+        restaurant.city.toLowerCase().includes(searchValue) ||
+        restaurant.rating.toLowerCase().includes(searchValue) ||
+        restaurant.text.toLowerCase().includes(searchValue)
+    );
+
+    console.log(filteredRestaurants);
   }
 
   if (isLoading) {
@@ -36,23 +55,41 @@ export default function restaurantsPage({ isLoading, error, restaurantsData }) {
           </StyledButton>
 
           <h2>Restaurants:</h2>
-          {restaurantsData.map((restaurant) => (
-            <StyledArticle key={restaurant._id}>
-              <StyledArticleHeadline>
-                <h3>{restaurant.restaurant}</h3>
-                <FlexDiv>
-                  <button type="button">✏️</button>
-                  <button type="button">🗑️</button>
-                </FlexDiv>
-              </StyledArticleHeadline>
+          {filteredRestaurants
+            ? filteredRestaurants.map((restaurant) => (
+                <StyledArticle key={restaurant._id}>
+                  <StyledArticleHeadline>
+                    <h3>{restaurant.restaurant}</h3>
+                    <FlexDiv>
+                      <button type="button">✏️</button>
+                      <button type="button">🗑️</button>
+                    </FlexDiv>
+                  </StyledArticleHeadline>
 
-              <StyledTextSection>
-                <p>Rating: {setColor(restaurant.rating)}</p>
-                <p>{restaurant.text}</p>
-                {restaurant.city && <p>{restaurant.city}</p>}
-              </StyledTextSection>
-            </StyledArticle>
-          ))}
+                  <StyledTextSection>
+                    <p>Rating: {setColor(restaurant.rating)}</p>
+                    <p>{restaurant.text}</p>
+                    {restaurant.city && <p>{restaurant.city}</p>}
+                  </StyledTextSection>
+                </StyledArticle>
+              ))
+            : restaurantsData.map((restaurant) => (
+                <StyledArticle key={restaurant._id}>
+                  <StyledArticleHeadline>
+                    <h3>{restaurant.restaurant}</h3>
+                    <FlexDiv>
+                      <button type="button">✏️</button>
+                      <button type="button">🗑️</button>
+                    </FlexDiv>
+                  </StyledArticleHeadline>
+
+                  <StyledTextSection>
+                    <p>Rating: {setColor(restaurant.rating)}</p>
+                    <p>{restaurant.text}</p>
+                    {restaurant.city && <p>{restaurant.city}</p>}
+                  </StyledTextSection>
+                </StyledArticle>
+              ))}
         </StyledSection>
       </main>
     </>
