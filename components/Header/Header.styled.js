@@ -15,6 +15,7 @@ export const StyledHeadline = styled.h1`
   padding-left: 2rem;
   color: #52ffbd;
   user-select: none;
+  font-size: 1.7rem;
 `;
 
 export const StyledNav = styled.nav`
@@ -24,9 +25,10 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledButton = styled(Link)`
+  font-size: 1rem;
   color: #52ffbd;
   text-decoration: none;
-  padding: 0.5rem 0.9rem 0.5rem 0.9rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
   outline: 2px solid #52ffbd;
   border-radius: 10px;
   display: flex;
