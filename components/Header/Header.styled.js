@@ -22,6 +22,14 @@ export const StyledHeadline = styled.h1`
     font-size: 1.5rem;
   }
 `;
+export const StyledSearchbar = styled.input`
+  background-color: transparent;
+  color: white;
+  outline: 2px solid #52ffbd;
+  border-radius: 10px;
+  border: none;
+  padding-left: 5px;
+`;
 
 export const StyledNav = styled.nav`
   padding-right: 2rem;

@@ -2,7 +2,12 @@ import { FiSearch } from "react-icons/fi";
 import { StyledButton } from "../StyledButton/Button.styled";
 import { StyledLink } from "../StyledLink/Link.styled";
 import StyledLinkButton from "../StyledLinkButton/LinkButton.styled";
-import { StyledHeader, StyledHeadline, StyledNav } from "./Header.styled";
+import {
+  StyledHeader,
+  StyledHeadline,
+  StyledNav,
+  StyledSearchbar,
+} from "./Header.styled";
 
 export default function Header({
   handleSearchClicked,
@@ -25,7 +30,9 @@ export default function Header({
         <StyledLink href="/">Taste Trackr</StyledLink>
       </StyledHeadline>
       <StyledNav>
-        {isSearchClicked && <input type="text" onChange={handleSearchInput} />}
+        {isSearchClicked && (
+          <StyledSearchbar type="text" onChange={handleSearchInput} />
+        )}
         <StyledButton onClick={toggleSearchBar}>
           <FiSearch />
         </StyledButton>
