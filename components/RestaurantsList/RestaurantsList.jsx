@@ -6,8 +6,9 @@ import {
   StyledTextSection,
 } from "../StyledArticle/Article.styled";
 
-export default function RestaurantsList({ restaurantsData }) {
+export default function RestaurantsList({ restaurantsData, handleDelete }) {
   const router = useRouter();
+
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
@@ -33,7 +34,9 @@ export default function RestaurantsList({ restaurantsData }) {
             </button>
           </ScaledPen>
 
-          <button type="button">🗑️</button>
+          <button type="button" onClick={() => handleDelete(restaurant._id)}>
+            🗑️
+          </button>
         </FlexDiv>
       </StyledArticleHeadline>
 

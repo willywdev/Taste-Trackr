@@ -10,4 +10,9 @@ export default async function handler(request, response) {
     await Restaurant.findByIdAndUpdate(id, restaurantData);
     response.status(200).json({ status: "entry updated." });
   }
+
+  if (request.method === "DELETE") {
+    await Restaurant.findByIdAndDelete(id);
+    response.status(200).json({ status: "entry deleted." });
+  }
 }

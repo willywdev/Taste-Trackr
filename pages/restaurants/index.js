@@ -16,6 +16,7 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
     data: restaurantsData,
     isLoading,
     error,
+    mutate,
   } = useSWR(
     email ? `/api/restaurants?email=${data.user.email}` : null,
     fetcher
@@ -65,6 +66,14 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
     );
   }
 
+  async function handleDelete(id) {
+    await fetch(`/api/${id}`, {
+      method: "DELETE",
+    });
+
+    mutate();
+  }
+
   return (
     <>
       <main>
@@ -80,9 +89,15 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
             />
           </BetweenDiv>
           {filteredRestaurants ? (
-            <RestaurantsList restaurantsData={filteredRestaurants} />
+            <RestaurantsList
+              restaurantsData={filteredRestaurants}
+              handleDelete={handleDelete}
+            />
           ) : (
-            <RestaurantsList restaurantsData={restaurantsData} />
+            <RestaurantsList
+              restaurantsData={restaurantsData}
+              handleDelete={handleDelete}
+            />
           )}
         </StyledSection>
       </main>
