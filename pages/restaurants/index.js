@@ -7,6 +7,7 @@ import {
 import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import { useSession } from "next-auth/react";
+import { ClimbingBoxLoader } from "react-spinners";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -65,7 +66,10 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
     return (
       <main>
         <StyledSection>
-          <h2>Is loading ...</h2>
+          <StyledLoading>
+            <h2>Is loading ...</h2>
+            <ClimbingBoxLoader color="#52ffbd" />
+          </StyledLoading>
         </StyledSection>
       </main>
     );
@@ -74,7 +78,9 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
     return (
       <main>
         <StyledSection>
-          <h2>Something went wrong: {error.message}</h2>
+          <StyledLoading>
+            <h2>Something went wrong 🤕</h2>
+          </StyledLoading>
         </StyledSection>
       </main>
     );
@@ -161,4 +167,11 @@ const FlexDiv = styled.div`
   display: flex;
   margin-right: 1rem;
   gap: 0.5rem;
+`;
+
+const StyledLoading = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
