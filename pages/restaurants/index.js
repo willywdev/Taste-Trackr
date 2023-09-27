@@ -16,7 +16,6 @@ export default function restaurantsPage({
   handleSearchValue,
 }) {
   let filteredRestaurants;
-  console.log(restaurantsData);
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
