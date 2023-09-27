@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import {
   StyledArticle,
@@ -6,6 +7,7 @@ import {
 } from "../StyledArticle/Article.styled";
 
 export default function RestaurantsList({ restaurantsData }) {
+  const router = useRouter();
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
@@ -24,7 +26,11 @@ export default function RestaurantsList({ restaurantsData }) {
         <h3>{restaurant.restaurant}</h3>
         <FlexDiv>
           <ScaledPen>
-            <button type="button">✏️</button>
+            <button
+              type="button"
+              onClick={() => router.push(`/${restaurant._id}`)}>
+              ✏️
+            </button>
           </ScaledPen>
 
           <button type="button">🗑️</button>

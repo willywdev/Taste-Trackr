@@ -1,11 +1,6 @@
 import { mutate } from "swr";
-import { StyledButton } from "../StyledButton/Button.styled";
-import { StyledSection } from "../StyledSection/Section.styled";
-import {
-  StyledForm,
-  StyledInput,
-  StyledTextarea,
-} from "./AddRestaurantForm.styled";
+
+import Form from "../Form/Form";
 
 export default function AddRestaurantForm({ userData }) {
   async function handleSubmit(event) {
@@ -31,32 +26,5 @@ export default function AddRestaurantForm({ userData }) {
     event.target.restaurant.focus();
   }
 
-  return (
-    <StyledSection>
-      <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="restaurant">Name:</label>
-        <StyledInput type="text" name="restaurant" id="restaurant" />
-
-        <label htmlFor="rating">Rating:</label>
-        <select name="rating" id="rating">
-          <option value="red">Bad</option>
-          <option value="yellow">Mediocre</option>
-          <option value="green">Good</option>
-        </select>
-
-        <label htmlFor="text">Your text:</label>
-        <StyledTextarea
-          name="text"
-          id="text"
-          cols="30"
-          rows="10"></StyledTextarea>
-
-        <label htmlFor="city">City:</label>
-        <StyledInput type="text" name="city" id="city" />
-
-        <br />
-        <StyledButton type="submit">Submit</StyledButton>
-      </StyledForm>
-    </StyledSection>
-  );
+  return <Form handleSubmit={handleSubmit} />;
 }
