@@ -11,7 +11,8 @@ export default function AddRestaurantForm() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const restaurantData = Object.fromEntries(formData);
-    const response = await fetch("/api/restaurants", {
+    console.log(restaurantData);
+    await fetch("/api/restaurants", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

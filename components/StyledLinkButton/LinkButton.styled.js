@@ -11,6 +11,8 @@ const StyledLinkButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+  vertical-align: middle;
+  gap: 5px;
 
   &:hover {
     background-color: #52ffbd;

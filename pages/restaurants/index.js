@@ -6,6 +6,7 @@ import {
 } from "@/components/StyledArticle/Article.styled";
 import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
+import { useSession } from "next-auth/react";
 import styled from "styled-components";
 
 export default function restaurantsPage({
@@ -15,6 +16,10 @@ export default function restaurantsPage({
   searchValue,
   handleSearchValue,
 }) {
+  const { data } = useSession();
+  if (data) {
+    console.log(data.user.email);
+  }
   let filteredRestaurants;
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
@@ -36,18 +41,30 @@ export default function restaurantsPage({
         restaurant.text.toLowerCase().includes(searchValue)
     );
   }
-
+  if (!data) {
+    return (
+      <main>
+        <StyledSection>
+          <h2>You must be logged in, to create new Ratings</h2>
+        </StyledSection>
+      </main>
+    );
+  }
   if (isLoading) {
     return (
       <main>
-        <h2>Is loading ...</h2>
+        <StyledSection>
+          <h2>Is loading ...</h2>
+        </StyledSection>
       </main>
     );
   }
   if (error) {
     return (
       <main>
-        <h2>Something went wrong: {error.message}</h2>
+        <StyledSection>
+          <h2>Something went wrong: {error.message}</h2>
+        </StyledSection>
       </main>
     );
   }
