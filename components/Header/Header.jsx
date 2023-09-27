@@ -9,9 +9,13 @@ export default function Header({ isLoggedIn }) {
         <StyledLink href="/">Taste Trackr</StyledLink>
       </StyledHeadline>
       <StyledNav>
-        <StyledLinkButton href="/restaurants">My Restaurants</StyledLinkButton>
         {isLoggedIn ? (
-          <StyledLinkButton href="/">Logout</StyledLinkButton>
+          <>
+            <StyledLinkButton href="/restaurants">
+              My Restaurants
+            </StyledLinkButton>
+            <StyledLinkButton href="/">Logout</StyledLinkButton>
+          </>
         ) : (
           <StyledLinkButton href="/">Login</StyledLinkButton>
         )}
