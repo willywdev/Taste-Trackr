@@ -8,19 +8,24 @@ import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import { useSession } from "next-auth/react";
 import styled from "styled-components";
+import useSWR from "swr";
 
-export default function restaurantsPage({
-  isLoading,
-  error,
-  restaurantsData,
-  searchValue,
-  handleSearchValue,
-}) {
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export default function restaurantsPage({ searchValue, handleSearchValue }) {
   const { data, status } = useSession();
-  if (data) {
-    console.log(data.user.email);
-  }
+  const email = data?.user?.email;
+  console.log(email);
+  const {
+    data: restaurantsData,
+    isLoading,
+    error,
+  } = useSWR(
+    email ? `/api/restaurants?email=${data.user.email}` : null,
+    fetcher
+  );
   let filteredRestaurants;
+
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
@@ -32,6 +37,7 @@ export default function restaurantsPage({
       return "🟢";
     }
   }
+
   if (searchValue) {
     filteredRestaurants = restaurantsData.filter(
       (restaurant) =>
@@ -41,6 +47,11 @@ export default function restaurantsPage({
         restaurant.text.toLowerCase().includes(searchValue)
     );
   }
+
+  function handleEdit() {
+    console.log("edit");
+  }
+
   if (!data && status !== "authenticated") {
     return (
       <main>
@@ -89,7 +100,9 @@ export default function restaurantsPage({
                   <StyledArticleHeadline>
                     <h3>{restaurant.restaurant}</h3>
                     <FlexDiv>
-                      <button type="button">✏️</button>
+                      <button type="button" onClick={handleEdit}>
+                        ✏️
+                      </button>
                       <button type="button">🗑️</button>
                     </FlexDiv>
                   </StyledArticleHeadline>
@@ -109,7 +122,9 @@ export default function restaurantsPage({
                   <StyledArticleHeadline>
                     <h3>{restaurant.restaurant}</h3>
                     <FlexDiv>
-                      <button type="button">✏️</button>
+                      <button type="button" onClick={handleEdit}>
+                        ✏️
+                      </button>
                       <button type="button">🗑️</button>
                     </FlexDiv>
                   </StyledArticleHeadline>
@@ -130,12 +145,6 @@ export default function restaurantsPage({
   );
 }
 
-const FlexDiv = styled.div`
-  display: flex;
-  gap: 7.777px;
-  margin-right: 1rem;
-`;
-
 const BetweenDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -146,4 +155,10 @@ const BetweenDetails = styled.div`
   display: flex;
   justify-content: space-between;
   margin-right: 1rem;
+`;
+
+const FlexDiv = styled.div`
+  display: flex;
+  margin-right: 1rem;
+  gap: 0.5rem;
 `;
