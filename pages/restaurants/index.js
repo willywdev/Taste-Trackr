@@ -1,22 +1,17 @@
+import RestaurantsList from "@/components/RestaurantsList/RestaurantsList";
 import Searchbar from "@/components/Searchbar/Searchbar";
-import {
-  StyledArticle,
-  StyledArticleHeadline,
-  StyledTextSection,
-} from "@/components/StyledArticle/Article.styled";
 import StyledButton from "@/components/StyledLinkButton/LinkButton.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import { useSession } from "next-auth/react";
 import { ClimbingBoxLoader } from "react-spinners";
 import styled from "styled-components";
 import useSWR from "swr";
-
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function restaurantsPage({ searchValue, handleSearchValue }) {
   const { data, status } = useSession();
   const email = data?.user?.email;
-  console.log(email);
+
   const {
     data: restaurantsData,
     isLoading,
@@ -27,18 +22,6 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
   );
   let filteredRestaurants;
 
-  function setColor(valueFromDB) {
-    if (valueFromDB === "red") {
-      return "🔴";
-    }
-    if (valueFromDB === "yellow") {
-      return "🟡";
-    }
-    if (valueFromDB === "green") {
-      return "🟢";
-    }
-  }
-
   if (searchValue) {
     filteredRestaurants = restaurantsData.filter(
       (restaurant) =>
@@ -47,10 +30,6 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
         restaurant.rating.toLowerCase().includes(searchValue) ||
         restaurant.text.toLowerCase().includes(searchValue)
     );
-  }
-
-  function handleEdit() {
-    console.log("edit");
   }
 
   if (!data && status !== "authenticated") {
@@ -100,51 +79,11 @@ export default function restaurantsPage({ searchValue, handleSearchValue }) {
               searchValue={searchValue}
             />
           </BetweenDiv>
-          {filteredRestaurants
-            ? filteredRestaurants.map((restaurant) => (
-                <StyledArticle key={restaurant._id}>
-                  <StyledArticleHeadline>
-                    <h3>{restaurant.restaurant}</h3>
-                    <FlexDiv>
-                      <button type="button" onClick={handleEdit}>
-                        ✏️
-                      </button>
-                      <button type="button">🗑️</button>
-                    </FlexDiv>
-                  </StyledArticleHeadline>
-
-                  <StyledTextSection>
-                    <BetweenDetails>
-                      <p>Rating: {setColor(restaurant.rating)}</p>
-                      <p>Date: {restaurant.date}</p>
-                    </BetweenDetails>
-                    <p>{restaurant.text}</p>
-                    {restaurant.city && <p>{restaurant.city}</p>}
-                  </StyledTextSection>
-                </StyledArticle>
-              ))
-            : restaurantsData.map((restaurant) => (
-                <StyledArticle key={restaurant._id}>
-                  <StyledArticleHeadline>
-                    <h3>{restaurant.restaurant}</h3>
-                    <FlexDiv>
-                      <button type="button" onClick={handleEdit}>
-                        ✏️
-                      </button>
-                      <button type="button">🗑️</button>
-                    </FlexDiv>
-                  </StyledArticleHeadline>
-
-                  <StyledTextSection>
-                    <BetweenDetails>
-                      <p>Rating: {setColor(restaurant.rating)}</p>
-                      <p>Date: {restaurant.date}</p>
-                    </BetweenDetails>
-                    <p>{restaurant.text}</p>
-                    {restaurant.city && <p>{restaurant.city}</p>}
-                  </StyledTextSection>
-                </StyledArticle>
-              ))}
+          {filteredRestaurants ? (
+            <RestaurantsList restaurantsData={filteredRestaurants} />
+          ) : (
+            <RestaurantsList restaurantsData={restaurantsData} />
+          )}
         </StyledSection>
       </main>
     </>
@@ -155,18 +94,6 @@ const BetweenDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const BetweenDetails = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-right: 1rem;
-`;
-
-const FlexDiv = styled.div`
-  display: flex;
-  margin-right: 1rem;
-  gap: 0.5rem;
 `;
 
 const StyledLoading = styled.div`
