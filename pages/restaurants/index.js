@@ -16,7 +16,7 @@ export default function restaurantsPage({
   searchValue,
   handleSearchValue,
 }) {
-  const { data } = useSession();
+  const { data, status } = useSession();
   if (data) {
     console.log(data.user.email);
   }
@@ -41,7 +41,7 @@ export default function restaurantsPage({
         restaurant.text.toLowerCase().includes(searchValue)
     );
   }
-  if (!data) {
+  if (!data && status !== "authenticated") {
     return (
       <main>
         <StyledSection>
