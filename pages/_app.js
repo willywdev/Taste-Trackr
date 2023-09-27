@@ -9,11 +9,6 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   const [searchValue, setSearchValue] = useState("");
-  const [isEdit, setIsEdit] = useState(false);
-
-  function handleIsEdit() {
-    setIsEdit(!isEdit);
-  }
 
   function handleSearchValue(value) {
     setSearchValue(value.toLowerCase());

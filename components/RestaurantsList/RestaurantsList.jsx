@@ -6,10 +6,6 @@ import {
 } from "../StyledArticle/Article.styled";
 
 export default function RestaurantsList({ restaurantsData }) {
-  function handleEdit() {
-    console.log("edit");
-  }
-
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
@@ -27,9 +23,10 @@ export default function RestaurantsList({ restaurantsData }) {
       <StyledArticleHeadline>
         <h3>{restaurant.restaurant}</h3>
         <FlexDiv>
-          <button type="button" onClick={handleEdit}>
-            ✏️
-          </button>
+          <ScaledPen>
+            <button type="button">✏️</button>
+          </ScaledPen>
+
           <button type="button">🗑️</button>
         </FlexDiv>
       </StyledArticleHeadline>
@@ -58,48 +55,6 @@ const FlexDiv = styled.div`
   gap: 0.5rem;
 `;
 
-/* {filteredRestaurants
-    ? filteredRestaurants.map((restaurant) => (
-        <StyledArticle key={restaurant._id}>
-          <StyledArticleHeadline>
-            <h3>{restaurant.restaurant}</h3>
-            <FlexDiv>
-              <button type="button" onClick={handleEdit}>
-                ✏️
-              </button>
-              <button type="button">🗑️</button>
-            </FlexDiv>
-          </StyledArticleHeadline>
-
-          <StyledTextSection>
-            <BetweenDetails>
-              <p>Rating: {setColor(restaurant.rating)}</p>
-              <p>Date: {restaurant.date}</p>
-            </BetweenDetails>
-            <p>{restaurant.text}</p>
-            {restaurant.city && <p>{restaurant.city}</p>}
-          </StyledTextSection>
-        </StyledArticle>
-      ))
-    : restaurantsData.map((restaurant) => (
-        <StyledArticle key={restaurant._id}>
-          <StyledArticleHeadline>
-            <h3>{restaurant.restaurant}</h3>
-            <FlexDiv>
-              <button type="button" onClick={handleEdit}>
-                ✏️
-              </button>
-              <button type="button">🗑️</button>
-            </FlexDiv>
-          </StyledArticleHeadline>
-
-          <StyledTextSection>
-            <BetweenDetails>
-              <p>Rating: {setColor(restaurant.rating)}</p>
-              <p>Date: {restaurant.date}</p>
-            </BetweenDetails>
-            <p>{restaurant.text}</p>
-            {restaurant.city && <p>{restaurant.city}</p>}
-          </StyledTextSection>
-        </StyledArticle>
-      ))} */
+const ScaledPen = styled.span`
+  transform: scaleX(-1);
+`;

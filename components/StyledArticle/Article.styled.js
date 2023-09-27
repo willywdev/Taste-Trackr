@@ -16,6 +16,7 @@ export const StyledArticleHeadline = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 3rem;
 
   button {
     background: none;
@@ -24,7 +25,6 @@ export const StyledArticleHeadline = styled.div`
     border-radius: 8px;
     font-size: 1.1rem;
     cursor: pointer;
-    transform: scaleX(-1);
 
     &:hover {
       background-color: #03071e;
