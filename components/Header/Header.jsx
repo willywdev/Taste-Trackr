@@ -38,13 +38,15 @@ export default function Header({
           <FiSearch />
         </StyledButton>
         {isLoggedIn ? (
-          <StyledLinkButton href="/restaurants">
-            My Restaurants
-          </StyledLinkButton>
+          <>
+            <StyledLinkButton href="/restaurants">
+              My Restaurants
+            </StyledLinkButton>
+            <StyledLinkButton href="/">Logout</StyledLinkButton>
+          </>
         ) : (
           <>
             <StyledLinkButton href="/">Login</StyledLinkButton>
-            <StyledLinkButton href="/">Sign up</StyledLinkButton>
           </>
         )}
       </StyledNav>
