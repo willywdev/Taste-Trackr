@@ -38,10 +38,18 @@ export default function restaurantsPage({
   }
 
   if (isLoading) {
-    return <h2>Is loading ...</h2>;
+    return (
+      <main>
+        <h2>Is loading ...</h2>
+      </main>
+    );
   }
   if (error) {
-    return <h2>Something went wrong: {error.message}</h2>;
+    return (
+      <main>
+        <h2>Something went wrong: {error.message}</h2>
+      </main>
+    );
   }
 
   return (
