@@ -25,7 +25,11 @@ export default function Header() {
             <StyledLinkButton href="/restaurants">
               My Restaurants
             </StyledLinkButton>
-            <StyledLinkButton href="/" onClick={() => signOut("google")}>
+            <StyledLinkButton
+              href="/"
+              onClick={async () => {
+                await signOut("google");
+              }}>
               Logout
             </StyledLinkButton>
           </>

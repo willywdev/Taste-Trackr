@@ -17,7 +17,7 @@ export default function Landing() {
         <li>✅ Tried a restaurant again and found it better? Update it 👍🏻</li>
       </StyledList>
       <p>
-        Crafted together with a lot 🐈 by{" "}
+        Crafted together with lots of 🐈 by{" "}
         <StyledLink href="https://github.com/willywdev" target="_blank">
           willywdev
         </StyledLink>
