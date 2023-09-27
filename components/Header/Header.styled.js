@@ -23,19 +23,6 @@ export const StyledHeadline = styled.h1`
     font-size: 1.2rem;
   }
 `;
-export const StyledSearchbar = styled.input`
-  background-color: transparent;
-  color: white;
-  outline: 2px solid #52ffbd;
-  border-radius: 10px;
-  border: none;
-  padding-left: 5px;
-
-  @media (max-width: 768px) {
-    outline: 1px solid #52ffbd;
-    width: 4rem;
-  }
-`;
 
 export const StyledNav = styled.nav`
   padding-right: 2rem;

@@ -1,3 +1,4 @@
+import Searchbar from "@/components/Searchbar/Searchbar";
 import {
   StyledArticle,
   StyledArticleHeadline,
@@ -12,6 +13,7 @@ export default function restaurantsPage({
   error,
   restaurantsData,
   searchValue,
+  handleSearchValue,
 }) {
   let filteredRestaurants;
 
@@ -26,7 +28,6 @@ export default function restaurantsPage({
       return "🟢";
     }
   }
-
   if (searchValue) {
     filteredRestaurants = restaurantsData.filter(
       (restaurant) =>
@@ -35,8 +36,6 @@ export default function restaurantsPage({
         restaurant.rating.toLowerCase().includes(searchValue) ||
         restaurant.text.toLowerCase().includes(searchValue)
     );
-
-    console.log(filteredRestaurants);
   }
 
   if (isLoading) {
@@ -53,8 +52,13 @@ export default function restaurantsPage({
           <StyledButton href="restaurants/create">
             Create new Rating
           </StyledButton>
-
-          <h2>Restaurants:</h2>
+          <BetweenDiv>
+            <h2>Restaurants:</h2>
+            <Searchbar
+              handleSearchValue={handleSearchValue}
+              searchValue={searchValue}
+            />
+          </BetweenDiv>
           {filteredRestaurants
             ? filteredRestaurants.map((restaurant) => (
                 <StyledArticle key={restaurant._id}>
@@ -100,4 +104,10 @@ const FlexDiv = styled.div`
   display: flex;
   gap: 7.777px;
   margin-right: 1rem;
+`;
+
+const BetweenDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

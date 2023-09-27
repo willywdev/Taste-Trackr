@@ -9,12 +9,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function App({ Component, pageProps }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [searchValue, setSearchValue] = useState("");
-  const [isSearchClicked, setIsSearchClicked] = useState(false);
   const { data, isLoading, error } = useSWR("/api/restaurants", fetcher);
-
-  function handleSearchClicked() {
-    setIsSearchClicked(!isSearchClicked);
-  }
 
   function handleLoggedIn() {
     setIsLoggedIn(!isLoggedIn);
@@ -30,12 +25,7 @@ export default function App({ Component, pageProps }) {
         <title>Taste Trackr</title>
       </Head>
       <GlobalStyle />
-      <Header
-        handleSearchClicked={handleSearchClicked}
-        isSearchClicked={isSearchClicked}
-        handleSearchValue={handleSearchValue}
-        isLoggedIn={isLoggedIn}
-      />
+      <Header isLoggedIn={isLoggedIn} />
       <Component
         {...pageProps}
         isLoggedIn={isLoggedIn}
@@ -43,6 +33,7 @@ export default function App({ Component, pageProps }) {
         error={error}
         isLoading={isLoading}
         searchValue={searchValue}
+        handleSearchValue={handleSearchValue}
       />
     </>
   );
