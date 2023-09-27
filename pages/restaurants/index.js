@@ -16,7 +16,7 @@ export default function restaurantsPage({
   handleSearchValue,
 }) {
   let filteredRestaurants;
-
+  console.log(restaurantsData);
   function setColor(valueFromDB) {
     if (valueFromDB === "red") {
       return "🔴";
@@ -71,7 +71,10 @@ export default function restaurantsPage({
                   </StyledArticleHeadline>
 
                   <StyledTextSection>
-                    <p>Rating: {setColor(restaurant.rating)}</p>
+                    <BetweenDetails>
+                      <p>Rating: {setColor(restaurant.rating)}</p>
+                      <p>Date: {restaurant.date}</p>
+                    </BetweenDetails>
                     <p>{restaurant.text}</p>
                     {restaurant.city && <p>{restaurant.city}</p>}
                   </StyledTextSection>
@@ -88,7 +91,10 @@ export default function restaurantsPage({
                   </StyledArticleHeadline>
 
                   <StyledTextSection>
-                    <p>Rating: {setColor(restaurant.rating)}</p>
+                    <BetweenDetails>
+                      <p>Rating: {setColor(restaurant.rating)}</p>
+                      <p>Date: {restaurant.date}</p>
+                    </BetweenDetails>
                     <p>{restaurant.text}</p>
                     {restaurant.city && <p>{restaurant.city}</p>}
                   </StyledTextSection>
@@ -110,4 +116,10 @@ const BetweenDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const BetweenDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1rem;
 `;

@@ -3,24 +3,36 @@
     "restaurant": "Restaurant 1",
     "rating": "red",
     "text": "Test 1",
-    "city": "Berlin"
+    "city": "Berlin",
+    "createdBy": "1323434",
+    "date": "09/27/23",
+    "additionalAccessBy": "13232321"
   },
   {
     "restaurant": "Restaurant 2",
     "rating": "yellow",
     "text": "Test 2",
-    "city": "Dortmund"
+    "city": "Dortmund",
+    "createdBy": "1323434",
+    "date": "09/27/23",
+    "additionalAccessBy": "13232321"
   },
   {
     "restaurant": "Restaurant 3",
     "rating": "green",
     "text": "Test 3",
-    "city": "Hamburg"
+    "city": "Hamburg",
+    "createdBy": "1323434",
+    "date": "09/27/23",
+    "additionalAccessBy": "13232321"
   },
   {
     "restaurant": "Restaurant 4",
     "rating": "green",
     "text": "Test 4",
-    "city": "Düsseldorf"
+    "city": "Düsseldorf",
+    "createdBy": "1323434",
+    "date": "09/27/23",
+    "additionalAccessBy": "13232321"
   }
 ]

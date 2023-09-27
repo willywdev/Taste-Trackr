@@ -7,6 +7,9 @@ const restaurantSchema = new Schema({
   rating: { type: String, required: true },
   text: { type: String, required: true },
   city: { type: String },
+  createdBy: { type: String, required: true },
+  date: { type: String, required: true },
+  additionalAccessBy: { type: String },
 });
 
 const Restaurant =
