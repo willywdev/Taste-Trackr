@@ -19,8 +19,8 @@ export const StyledHeadline = styled.h1`
   font-size: 1.7rem;
 
   @media (max-width: 768px) {
-    padding-left: 0.7rem;
-    font-size: 1.5rem;
+    padding-left: 0.5rem;
+    font-size: 1.2rem;
   }
 `;
 export const StyledSearchbar = styled.input`
@@ -30,6 +30,11 @@ export const StyledSearchbar = styled.input`
   border-radius: 10px;
   border: none;
   padding-left: 5px;
+
+  @media (max-width: 768px) {
+    outline: 1px solid #52ffbd;
+    width: 4rem;
+  }
 `;
 
 export const StyledNav = styled.nav`

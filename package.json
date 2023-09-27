@@ -19,5 +19,8 @@
   },
   "resolutions": {
     "styled-components": "^6"
+  },
+  "devDependencies": {
+    "react-device-detect": "^2.2.3"
   }
 }

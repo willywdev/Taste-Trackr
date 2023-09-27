@@ -20,6 +20,7 @@ const StyledLinkButton = styled(Link)`
   @media (max-width: 768px) {
     outline: 1px solid #52ffbd;
     padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+    font-size: 0.9rem;
   }
 `;
 

@@ -1,3 +1,4 @@
+import { isMobile } from "react-device-detect";
 import { FiSearch } from "react-icons/fi";
 import { StyledButton } from "../StyledButton/Button.styled";
 import { StyledLink } from "../StyledLink/Link.styled";
@@ -37,7 +38,9 @@ export default function Header({
         <StyledButton onClick={toggleSearchBar}>
           <FiSearch />
         </StyledButton>
-        {isLoggedIn ? (
+        {isMobile && isSearchClicked ? (
+          ""
+        ) : isLoggedIn ? (
           <>
             <StyledLinkButton href="/restaurants">
               My Restaurants
@@ -49,6 +52,18 @@ export default function Header({
             <StyledLinkButton href="/">Login</StyledLinkButton>
           </>
         )}
+        {/* {isLoggedIn ? (
+          <>
+            <StyledLinkButton href="/restaurants">
+              My Restaurants
+            </StyledLinkButton>
+            <StyledLinkButton href="/">Logout</StyledLinkButton>
+          </>
+        ) : (
+          <>
+            <StyledLinkButton href="/">Login</StyledLinkButton>
+          </>
+        )} */}
       </StyledNav>
     </StyledHeader>
   );
