@@ -5,6 +5,7 @@ import {
 } from "@/components/StyledArticle/Article.styled";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -12,16 +13,18 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function EditPage() {
   const { data } = useSession();
   const email = data?.user?.email;
-  const {
-    data: restaurantsData,
-    isLoading,
-    error,
-  } = useSWR(
+  const { data: restaurantsData } = useSWR(
     email ? `/api/restaurants?email=${data.user.email}` : null,
     fetcher
   );
   const router = useRouter();
   const { id } = router.query;
+
+  useEffect(() => {
+    if (!data) {
+      router.push("/");
+    }
+  }, []);
 
   if (!restaurantsData) {
     return;
