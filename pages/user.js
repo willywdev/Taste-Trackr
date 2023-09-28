@@ -2,6 +2,7 @@ import { StyledButton } from "@/components/StyledButton/Button.styled";
 import { StyledInput } from "@/components/StyledInput/Input.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import { useRouter } from "next/router";
+import { CircleLoader } from "react-spinners";
 import styled from "styled-components";
 import useSWR from "swr";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -14,9 +15,9 @@ export default function UserPage() {
     data ? `/api/restaurants?id=${id}` : null,
     fetcher
   );
-  console.log(restaurantData);
+
   if (!id) {
-    return <div>Loading...</div>;
+    return <CircleLoader color="#52ffbd" />;
   }
 
   if (error) {
@@ -24,7 +25,7 @@ export default function UserPage() {
   }
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <CircleLoader color="#52ffbd" />;
   }
 
   return (
