@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  nickname: { type: String, required: true },
-  rating: { type: Array, default: undefined },
+  name: { type: String, required: true },
+  pairID: { type: String },
+  image: { type: String },
+  email: { type: String, required: true },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
