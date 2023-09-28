@@ -32,7 +32,7 @@ export default function UserPage() {
       <StyledSection>
         <FlexBox>
           <img src={data.image} alt="Avatar" />
-          <p>Name: {data.name}</p>
+          <p>{data.name}</p>
           <p>Ratings: {restaurantData?.length}</p>
           <p>Your ID: {id}</p>
           <StyledButton>Copy</StyledButton>

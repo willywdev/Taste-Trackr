@@ -6,7 +6,7 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     const { id } = request.query;
-    console.log(id);
+
     if (!id) {
       response.status(400).json({ status: "Missing ID" });
     }
