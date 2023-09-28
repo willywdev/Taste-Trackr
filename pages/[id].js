@@ -12,13 +12,17 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function EditPage() {
   const { data } = useSession();
-  const email = data?.user?.email;
-  const { data: restaurantsData } = useSWR(
-    email ? `/api/restaurants?email=${data.user.email}` : null,
-    fetcher
-  );
   const router = useRouter();
   const { id } = router.query;
+  const email = data?.user?.email;
+  const { data: user } = useSWR(
+    email ? `/api/user?email=${email}` : null,
+    fetcher
+  );
+  const { data: restaurantsData } = useSWR(
+    user ? `/api/restaurants?id=${user._id}` : null,
+    fetcher
+  );
 
   useEffect(() => {
     if (!data) {

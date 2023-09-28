@@ -10,18 +10,22 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function restaurantsPage({ searchValue, handleSearchValue }) {
   const { data, status } = useSession();
-  const email = data?.user?.email;
 
   const {
-    data: restaurantsData,
+    data: userID,
     isLoading,
     error,
-    mutate,
-  } = useSWR(
-    email ? `/api/restaurants?email=${data.user.email}` : null,
+  } = useSWR(data ? `/api/user?email=${data?.user?.email}` : null, fetcher);
+
+  const { data: restaurantsData, mutate } = useSWR(
+    userID ? `/api/restaurants?id=${userID._id}` : null,
     fetcher
   );
   let filteredRestaurants;
+
+  if (!restaurantsData) {
+    return;
+  }
 
   if (searchValue) {
     filteredRestaurants = restaurantsData.filter(

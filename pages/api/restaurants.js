@@ -5,13 +5,13 @@ export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
-    const { email } = request.query;
-
-    if (!email) {
-      response.status(400).json({ status: "Missing Email" });
+    const { id } = request.query;
+    console.log(id);
+    if (!id) {
+      response.status(400).json({ status: "Missing ID" });
     }
 
-    const restaurants = await Restaurant.find({ createdBy: email });
+    const restaurants = await Restaurant.find({ createdBy: id });
 
     response.status(200).json(restaurants);
     if (!restaurants) {

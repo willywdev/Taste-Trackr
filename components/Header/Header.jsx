@@ -8,7 +8,7 @@ import UserInfo from "../UserInfo/UserInfo";
 import { StyledHeader, StyledHeadline, StyledNav } from "./Header.styled";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function Header({ handleUserID }) {
+export default function Header() {
   const { data, status } = useSession();
   const [userCreated, setUserCreated] = useState(false);
 

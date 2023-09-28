@@ -1,6 +1,7 @@
 import { StyledButton } from "../StyledButton/Button.styled";
+import { StyledInput } from "../StyledInput/Input.styled";
 import { StyledSection } from "../StyledSection/Section.styled";
-import { StyledForm, StyledInput, StyledTextarea } from "./Form.styled";
+import { StyledForm, StyledTextarea } from "./Form.styled";
 
 export default function Form({ handleSubmit, placeholders }) {
   return (

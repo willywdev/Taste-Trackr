@@ -1,7 +1,7 @@
 import { FiSearch } from "react-icons/fi";
 import styled from "styled-components";
 import { StyledButton } from "../StyledButton/Button.styled";
-import { StyledSearchbar } from "./Searchbar.styled";
+import { StyledInput } from "../StyledInput/Input.styled";
 
 export default function Searchbar({ handleSearchValue }) {
   function handleSearchInput(event) {
@@ -13,7 +13,7 @@ export default function Searchbar({ handleSearchValue }) {
 
   return (
     <StyledSearchbarForm onSubmit={handleSearchInput}>
-      <StyledSearchbar type="text" name="search" />
+      <StyledInput type="text" name="search" />
       <StyledButton>
         <FiSearch />
       </StyledButton>
