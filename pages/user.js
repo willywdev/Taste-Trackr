@@ -1,4 +1,5 @@
 import { StyledButton } from "@/components/StyledButton/Button.styled";
+import { StyledInput } from "@/components/StyledInput/Input.styled";
 import { StyledSection } from "@/components/StyledSection/Section.styled";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -35,10 +36,13 @@ export default function UserPage() {
           <p>Ratings: {restaurantData?.length}</p>
           <p>Your ID: {id}</p>
           <StyledButton>Copy</StyledButton>
+          <p>Partner Link not working yet :(</p>
           <form>
             <label htmlFor="pairID">Set your Partners ID:</label>
-            <StyledInput type="text" name="pairID" id="pairID" />
-            <StyledButton type="submit">Save</StyledButton>
+            <StyledInput type="text" name="pairID" id="pairID" disabled />
+            <StyledButton type="submit" disabled>
+              Save
+            </StyledButton>
           </form>
         </FlexBox>
       </StyledSection>
@@ -62,16 +66,5 @@ const FlexBox = styled.div`
     display: flex;
     gap: 0.5rem;
     align-items: center;
-  }
-`;
-export const StyledInput = styled.input`
-  border-radius: 8px;
-  border: none;
-  height: 1.3rem;
-  width: 300px;
-
-  &:focus {
-    border: none;
-    outline: 1px solid #52ffbd;
   }
 `;

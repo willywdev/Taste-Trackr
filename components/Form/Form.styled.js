@@ -12,22 +12,14 @@ export const StyledForm = styled.form`
   }
 `;
 
-export const StyledInput = styled.input`
-  border-radius: 8px;
-  border: none;
-  height: 1.3rem;
-  width: 300px;
-
-  &:focus {
-    border: none;
-    outline: 1px solid #52ffbd;
-  }
-`;
-
 export const StyledTextarea = styled.textarea`
-  border-radius: 8px;
-  border: none;
   width: 300px;
+  background-color: transparent;
+  color: white;
+  outline: 2px solid #52ffbd;
+  border-radius: 10px;
+  border: none;
+  padding-left: 5px;
 
   &:focus {
     border: none;
